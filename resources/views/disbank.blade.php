@@ -5,7 +5,7 @@
 
 
 @section('content')
-<div class="card">
+<div class="card" ng-controller ="moneyctrl">
 				<div class="card-header">
 					<h4 class="card-title">جرد الخزينة </h4>
 				</div>
@@ -18,33 +18,26 @@
 				
 			
 			
-				<div class = "col-md-6">
+				<div class = "col-md-12">
 			
 		<div class="form-group">
 		<label for="issueinput3">من تاريخ</label>
-		<input type="date" id="issueinput3" class="form-control" name="dateopened" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="اختيار التاريخ">
+		<input type="text" id="issueinput3" class="form-control" name="daterange" >
 		
 		</div>
 										
 	</div>
 			
 		
-		<div class = "col-md-6">
-			
-		<div class="form-group">
-		<label for="issueinput3">الى تاريخ</label>
-		<input type="date" id="issueinput3" class="form-control" name="dateopened" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="اختيار التاريخ">
 		
-		</div>
-										
-	</div>
 		
 			<div class="col-md-4" >
 			<div class="form-group">
 		<label for="issueinput3">نوع المستند</label>
-		<select   class="form-control" name="dateopened">
-		<option>الكل</option>
-		
+		<select   class="form-control" ng-model  = "kind" name="dateopened">
+				<option >الجميع</option>
+		<option>قبض</option>
+		<option>دفع</option>
 		</select>
 		</div>
 		
@@ -52,9 +45,10 @@
 			
 				<div class="col-md-4" >
 			<div class="form-group">
-		<label for="issueinput3">الطبيب</label>
-		<select   class="form-control" name="dateopened">
-		<option> </option>
+		<label for="issueinput3">الفرع</label>
+		<select   ng-model = "branch" ng-change = "getclns(branch)" class="form-control" name="dateopened">
+		<option>الجميع</option>
+			<option ng-repeat = "da in brns" value = "@{{da.id}}"> @{{da.branchname}}</option>
 		
 		</select>
 		</div>
@@ -63,20 +57,21 @@
 			
 		<div class="col-md-4" >
 			<div class="form-group">
-		<label for="issueinput3">الفرع</label>
-		<select   class="form-control" name="dateopened">
-		<option>.. </option>
-		
+		<label for="issueinput3">العيادة</label>
+		<select  ng-model="clnid" ng-change = "getdoctros(clnid)" class="form-control" name="dateopened">
+		<option >الجميع</option>
+		<option ng-repeat = "da in clns" value = "@{{da.id}}" >@{{da.cln_arname}}</option>
+
 		</select>
 		</div>
 		</div>
 		
 		<div class="col-md-6" >
 			<div class="form-group">
-		<label for="issueinput3">العيادة</label>
-		<select   class="form-control" name="dateopened">
-		<option>.. </option>
-		
+		<label for="issueinput3">الطبيب</label>
+		<select  ng-model = "docid" class="form-control" name="dateopened">
+		<option>الجميع</option>
+		<option ng-repeat = "da in docs" value = "@{{da.id}}">@{{da.doc_name}}</option>
 		</select>
 		</div>
 		</div>
@@ -84,22 +79,18 @@
 		<div class="col-md-6" >
 			<div class="form-group">
 		<label for="issueinput3">الخزينة</label>
-		<select   class="form-control" name="dateopened">
-		<option>.. </option>
+		<select  ng-model = "bankid" class="form-control" name="dateopened">
+			<option>الجميع</option>
+		<option ng-repeat = "da in banks" value = "@{{da.id}}"> @{{da.bankname}} </option>
 		
 		</select>
 		</div>
 		</div>
 		
-		<div class="col-md-12" >
-			<div class="form-group">
-		<label for="issueinput3">البيان</label>
-		<textarea class="form-control" ></textarea>
-		</div>
-		</div>
+		
 				
 					<div class = "col-md-12">
-							<button class="btn btn-primary btn-min-width mr-1 mb-1 btn-block" type="button">بحث  <i class="icon-search"> </i>  </button>
+							<button class="btn btn-primary btn-min-width mr-1 mb-1 btn-block" ng-click="getresult()" type="button">بحث  <i class="icon-search"> </i>  </button>
 
 				</div>
 				
@@ -117,7 +108,7 @@
 				
 					
 				  <div class="table-responsive">
-                    <table class="table table-hover mb-0" style= "font-size:smaller;">
+                    <table class="table table-hover mb-0"  datatable="ng" dt-options = "vm.dtOptions" dt-ColumnDefs = "vm.dtColumnDefs" style= "font-size:smaller;">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -134,17 +125,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>2017-11-6</td>
-                                <td>11:48 PM</td>
-                                <td>الفرع الرئيسي</td>
-								<td>05912</td>
-								<td>67192747891 </td>
-								<td>قبض </td>
-								<td>يوسف صديق  </td>
-								<td>1599 </td>
-								<td>خزينة 1 </td>
+                            <tr ng-repeat = "da in result">
+                                <th scope="row">@{{$index +1}}</th>
+                                <td>@{{da.date1}}</td>
+                                <td>@{{da.time1}}</td>
+                                <td>@{{getbranchname(da.branch)}}</td>
+								<td>@{{da.user_created}}</td>
+								<td>@{{da.invid}} </td>
+								<td>@{{da.kind}} </td>
+								<td>@{{getpatname(da.account)}}</td>
+								<td>@{{da.net_price}} </td>
+								<td>@{{getbankname(da.bankid)}} </td>
 								<td>
 								<button type="button" class="btn btn-info btn-sm ">التفاصيل</button>
 								
@@ -277,4 +268,17 @@
 </div>
 -->
 				
+@endsection
+@section('script')
+<script src="angular/controllers/moneyctrl.js" ></script>  
+<script>
+		$('input[name="daterange"]').daterangepicker({
+			locale: {
+				format: 'YYYY-MM-DD',
+				"separator": " | ",
+				"applyLabel": "اختيار",
+				"cancelLabel": "الغاء"
+			  }
+		});
+</script>
 @endsection

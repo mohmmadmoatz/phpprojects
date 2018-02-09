@@ -134,6 +134,13 @@
 										</div>
 									</div>
 									
+									<div class="col-md-12">
+										<div class="form-group">
+											<label for="projectinput3">كلمة المرور</label>
+											<input type = "password" class = "form-control" name = "password" ng-model = "password">
+										</div>
+									</div
+
                                     	<div class="col-md-12">
 										<div class="form-group">
 										<label for="projectinput3">العيادة</label>

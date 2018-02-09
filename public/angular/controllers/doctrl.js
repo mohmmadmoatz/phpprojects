@@ -68,7 +68,7 @@ $scope.get_clnname = function(id) {
         for (let index = 0; index <   $scope.clns.length; index++) {
             const element =   $scope.clns[index];
         
-            if (element.id = id) {
+            if (element.id == id) {
                 clnname = element.cln_arname
             }
         }
@@ -106,7 +106,7 @@ $scope.uploadavtar = function(files) {
     fd.append("doc_clinic", $scope.doc_clinic)
     fd.append("doc_mohlat", $scope.doc_mohlat)
     fd.append("doc_address", $scope.doc_address)
-
+    fd.append("password", $scope.password)
 
     $http.post(apiUrl, fd, {
         withCredentials: true,

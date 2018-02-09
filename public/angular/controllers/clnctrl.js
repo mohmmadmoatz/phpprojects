@@ -52,19 +52,18 @@ $scope.refreshBranch =  function() {
 
 $scope.get_brname = function(id) {
 
-    var brname = id
-   
+    var brname = ''
 
-   
-
-    for (let index = 0; index <   $scope.brns.length; index++) {
-        const element =   $scope.brns[index];
-        console.log(element.branchname)
-        if (element.id = id) {
-            brname = element.branchname
+    for (let index = 0; index < $scope.brns.length; index++) {
+        const element = $scope.brns[index];
+        
+        if (id == element.id) {
+            return element.branchname
         }
+
+
     }
-    return brname
+
 
 }
 

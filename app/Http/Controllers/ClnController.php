@@ -80,6 +80,18 @@ class ClnController extends Controller
         
     }
 
+    public function byid($id) 
+    {
+        $clns = Cln::where("id","=",$id)->get();
+        return $clns;
+    }
+
+    public function bybranch($id) 
+    {
+        $clns = Cln::where('br_id','=',$id)->get();
+        return $clns;
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

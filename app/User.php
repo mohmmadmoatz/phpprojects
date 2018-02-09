@@ -26,4 +26,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    protected $primaryKey = 'userid';
+
+    public function hasRole ($role) {
+        if ($this->role === $role) {
+            return $role;
+        }else{
+            return false;
+        }
+    }
+     
 }

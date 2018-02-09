@@ -43,7 +43,7 @@
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style-rtl.css">
     <link rel="stylesheet" type="text/css" href="assets/sweetalert.css">
-
+    <link rel="stylesheet" type="text/css" href="assets/date/css/datepicker.css">
     <link rel="stylesheet" type="text/css" href="dist/css/angular-datatables.css">
      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
      <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css">
@@ -52,7 +52,7 @@
     
     <!-- END Custom CSS-->
   </head>
-  <body data-open="click" data-menu="vertical-menu" data-col="2-columns" class="vertical-layout vertical-menu 2-columns  fixed-navbar">
+  <body ng-controller = "Main" data-open="click" data-menu="vertical-menu" data-col="2-columns" class="vertical-layout vertical-menu 2-columns  fixed-navbar">
 
     <!-- navbar-fixed-top-->
     <nav class="header-navbar navbar navbar-with-menu navbar-fixed-top navbar-semi-dark navbar-shadow">
@@ -72,98 +72,18 @@
             </ul>
             <ul class="nav navbar-nav float-xs-right">
               
-              <li class="dropdown dropdown-notification nav-item"><a href="#" data-toggle="dropdown" class="nav-link nav-link-label"><i class="ficon icon-bell4"></i><span class="tag tag-pill tag-default tag-danger tag-default tag-up">5</span></a>
-                <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
-                  <li class="dropdown-menu-header">
-                    <h6 class="dropdown-header m-0"><span class="grey darken-2">Notifications</span><span class="notification-tag tag tag-default tag-danger float-xs-right m-0">5 New</span></h6>
-                  </li>
-                  <li class="list-group scrollable-container"><a href="javascript:void(0)" class="list-group-item">
-                      <div class="media">
-                        <div class="media-left valign-middle"><i class="icon-cart3 icon-bg-circle bg-cyan"></i></div>
-                        <div class="media-body">
-                          <h6 class="media-heading">You have new order!</h6>
-                          <p class="notification-text font-small-3 text-muted">Lorem ipsum dolor sit amet, consectetuer elit.</p><small>
-                            <time datetime="2015-06-11T18:29:20+08:00" class="media-meta text-muted">30 minutes ago</time></small>
-                        </div>
-                      </div></a><a href="javascript:void(0)" class="list-group-item">
-                      <div class="media">
-                        <div class="media-left valign-middle"><i class="icon-monitor3 icon-bg-circle bg-red bg-darken-1"></i></div>
-                        <div class="media-body">
-                          <h6 class="media-heading red darken-1">99% Server load</h6>
-                          <p class="notification-text font-small-3 text-muted">Aliquam tincidunt mauris eu risus.</p><small>
-                            <time datetime="2015-06-11T18:29:20+08:00" class="media-meta text-muted">Five hour ago</time></small>
-                        </div>
-                      </div></a><a href="javascript:void(0)" class="list-group-item">
-                      <div class="media">
-                        <div class="media-left valign-middle"><i class="icon-server2 icon-bg-circle bg-yellow bg-darken-3"></i></div>
-                        <div class="media-body">
-                          <h6 class="media-heading yellow darken-3">Warning notifixation</h6>
-                          <p class="notification-text font-small-3 text-muted">Vestibulum auctor dapibus neque.</p><small>
-                            <time datetime="2015-06-11T18:29:20+08:00" class="media-meta text-muted">Today</time></small>
-                        </div>
-                      </div></a><a href="javascript:void(0)" class="list-group-item">
-                      <div class="media">
-                        <div class="media-left valign-middle"><i class="icon-check2 icon-bg-circle bg-green bg-accent-3"></i></div>
-                        <div class="media-body">
-                          <h6 class="media-heading">Complete the task</h6><small>
-                            <time datetime="2015-06-11T18:29:20+08:00" class="media-meta text-muted">Last week</time></small>
-                        </div>
-                      </div></a><a href="javascript:void(0)" class="list-group-item">
-                      <div class="media">
-                        <div class="media-left valign-middle"><i class="icon-bar-graph-2 icon-bg-circle bg-teal"></i></div>
-                        <div class="media-body">
-                          <h6 class="media-heading">Generate monthly report</h6><small>
-                            <time datetime="2015-06-11T18:29:20+08:00" class="media-meta text-muted">Last month</time></small>
-                        </div>
-                      </div></a></li>
-                  <li class="dropdown-menu-footer"><a href="javascript:void(0)" class="dropdown-item text-muted text-xs-center">Read all notifications</a></li>
-                </ul>
-              </li>
-              <li class="dropdown dropdown-notification nav-item"><a href="#" data-toggle="dropdown" class="nav-link nav-link-label"><i class="ficon icon-mail6"></i><span class="tag tag-pill tag-default tag-info tag-default tag-up">8</span></a>
-                <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
-                  <li class="dropdown-menu-header">
-                    <h6 class="dropdown-header m-0"><span class="grey darken-2">Messages</span><span class="notification-tag tag tag-default tag-info float-xs-right m-0">4 New</span></h6>
-                  </li>
-                  <li class="list-group scrollable-container"><a href="javascript:void(0)" class="list-group-item">
-                      <div class="media">
-                        <div class="media-left"><span class="avatar avatar-sm avatar-online rounded-circle"><img src="app-assets/images/portrait/small/avatar-s-1.png" alt="avatar"><i></i></span></div>
-                        <div class="media-body">
-                          <h6 class="media-heading">Margaret Govan</h6>
-                          <p class="notification-text font-small-3 text-muted">I like your portfolio, let's start the project.</p><small>
-                            <time datetime="2015-06-11T18:29:20+08:00" class="media-meta text-muted">Today</time></small>
-                        </div>
-                      </div></a><a href="javascript:void(0)" class="list-group-item">
-                      <div class="media">
-                        <div class="media-left"><span class="avatar avatar-sm avatar-busy rounded-circle"><img src="app-assets/images/portrait/small/avatar-s-2.png" alt="avatar"><i></i></span></div>
-                        <div class="media-body">
-                          <h6 class="media-heading">Bret Lezama</h6>
-                          <p class="notification-text font-small-3 text-muted">I have seen your work, there is</p><small>
-                            <time datetime="2015-06-11T18:29:20+08:00" class="media-meta text-muted">Tuesday</time></small>
-                        </div>
-                      </div></a><a href="javascript:void(0)" class="list-group-item">
-                      <div class="media">
-                        <div class="media-left"><span class="avatar avatar-sm avatar-online rounded-circle"><img src="app-assets/images/portrait/small/avatar-s-3.png" alt="avatar"><i></i></span></div>
-                        <div class="media-body">
-                          <h6 class="media-heading">Carie Berra</h6>
-                          <p class="notification-text font-small-3 text-muted">Can we have call in this week ?</p><small>
-                            <time datetime="2015-06-11T18:29:20+08:00" class="media-meta text-muted">Friday</time></small>
-                        </div>
-                      </div></a><a href="javascript:void(0)" class="list-group-item">
-                      <div class="media">
-                        <div class="media-left"><span class="avatar avatar-sm avatar-away rounded-circle"><img src="app-assets/images/portrait/small/avatar-s-6.png" alt="avatar"><i></i></span></div>
-                        <div class="media-body">
-                          <h6 class="media-heading">Eric Alsobrook</h6>
-                          <p class="notification-text font-small-3 text-muted">We have project party this saturday night.</p><small>
-                            <time datetime="2015-06-11T18:29:20+08:00" class="media-meta text-muted">last month</time></small>
-                        </div>
-                      </div></a></li>
-                  <li class="dropdown-menu-footer"><a href="javascript:void(0)" class="dropdown-item text-muted text-xs-center">Read all messages</a></li>
-                </ul>
-              </li>
+           
               <li class="dropdown dropdown-user nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link"><span class="avatar avatar-online"><img src="app-assets/images/portrait/small/avatar-s-1.png" alt="avatar"><i></i></span><span class="user-name">{{ Auth::user()->name }}</span></a>
                 <div class="dropdown-menu dropdown-menu-right"><a href="#" class="dropdown-item"><i class="icon-head"></i> تعديل الملف</a>
 				
-                  <div class="dropdown-divider"></div><a href="#" class="dropdown-item"><i class="icon-power3"></i> تسجيل خروج</a>
+                  <div class="dropdown-divider"></div><a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" class="dropdown-item" ><i class="icon-power3"></i> تسجيل خروج</a>
+                
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+
+
                 </div>
               </li>
             </ul>
@@ -197,7 +117,8 @@
             
             </ul>
           </li>
-		  
+          
+          @if (Auth::user()->hasRole('Admin'))
           <li class=" nav-item"><a href="#"><i class="icon-users"></i><span data-i18n="nav.project.main" class="menu-title">الموظفين</span></a>
             <ul class="menu-content">
               
@@ -206,7 +127,9 @@
           
             </ul>
           </li>
-		  
+          @endif
+
+          @if (Auth::user()->hasRole('Admin'))
           <li class=" nav-item"><a href="#"><i class="icon-ios-albums-outline"></i><span data-i18n="nav.cards.main" class="menu-title">العيادات</span></a>
             <ul class="menu-content">
               
@@ -214,7 +137,9 @@
               </li>
             </ul>
           </li>
-		  
+          @endif
+
+          @if (Auth::user()->hasRole('Admin'))
         <li class=" nav-item"><a href="#"><i class="icon-folder"></i><span data-i18n="nav.cards.main" class="menu-title">الفروع</span></a>
             <ul class="menu-content">
               
@@ -222,8 +147,9 @@
               </li>
             </ul>
           </li>
+          @endif
 
-
+          @if (Auth::user()->hasRole('Emp'))
 		  <li class=" nav-item"><a href="#"><i class="icon-ei-calendar"></i><span data-i18n="nav.cards.main" class="menu-title">ادارة الحجز والاستعلام</span></a>
            <ul class="menu-content">
               
@@ -231,19 +157,26 @@
               </li>
             </ul>
           </li>
-		  
+      @endif
+
+          @if (Auth::user()->hasRole('Admin') || Auth::user()->hasRole('doctor') ) 
 		  <li class=" nav-item"><a href="#"><i class="icon-user-md"></i><span data-i18n="nav.cards.main" class="menu-title">الطبيب</span></a>
            <ul class="menu-content">
 
+              @if (Auth::user()->hasRole('Admin'))
               <li><a href="doctordata" data-i18n="nav.cards.card_actions" class="menu-item">بيانات الأطباء</a>
               </li>
+              @endif
 
+              @if (Auth::user()->hasRole('doctor'))
               <li><a href="doctor" data-i18n="nav.cards.card_actions" class="menu-item">شاشة الطبيب</a>
               </li>
+              @endif
             </ul>
           </li>
+          @endif
 			
-		
+          @if (Auth::user()->hasRole('Admin') || Auth::user()->hasRole('Emp'))
   <li class=" nav-item"><a href="#"><i class="icon-file-text"></i><span data-i18n="nav.cards.main" class="menu-title">الفواتير</span></a>
            <ul class="menu-content">
          
@@ -251,20 +184,25 @@
 			    <li><a href="#" data-i18n="nav.cards.card_actions" class="menu-item">قائمة الفواتير</a>
               </li>
             </ul>
-          </li>		
-			
+          </li>
+          @endif
+
+          @if (Auth::user()->hasRole('Admin'))
 			  <li class=" nav-item"><a href="#"><i class="icon-briefcase"></i><span data-i18n="nav.cards.main" class="menu-title">الخزينة</span></a>
            <ul class="menu-content">
-         
+             
+              <li><a href="banks" data-i18n="nav.cards.card_actions" class="menu-item">الخزائن</a>
+             
               <li><a href="disbank" data-i18n="nav.cards.card_actions" class="menu-item">جرد الخزينة</a>
               </li>
             </ul>
           </li>
-			
+          @endif
+          @if (Auth::user()->hasRole('Admin'))
 			  <li class=" nav-item"><a href="defineService"><i class="icon-list"></i><span data-i18n="nav.cards.main" class="menu-title">تعريف الأصناف والخدمات</span></a>
            
           </li>
-         
+         @endif
         
         
          
@@ -334,11 +272,15 @@
     <script src="app-assets/js/scripts/pages/dashboard-lite.js" type="text/javascript"></script>
 
     <script src="angular/app.js" ></script>
-    
-    @yield('script')
+      <script src="assets/date/js/bootstrap-datepicker.js"></script>
   
+      <script src="assets/moment.min.js"></script>
+      <script src="assets/daterangepicker.js"></script>
+      <link  rel="stylesheet" type="text/css"  href="assets/daterangepicker.css"/>
+    @yield('script')
+   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.1/sweetalert2.all.min.js"></script>
-     
+  
 
     <!-- END PAGE LEVEL JS-->
 

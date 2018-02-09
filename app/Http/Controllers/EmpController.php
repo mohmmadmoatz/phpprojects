@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Emp;
+use App\User;
 class EmpController extends Controller
 {
     /**
@@ -48,18 +49,23 @@ class EmpController extends Controller
         $empadd->phone = $request->input('phone');
         $empadd->email = $request->input('email');
         $empadd->clinic = $request->input('clinic');
-      
+
         $empadd->mohlat = $request->input('mohlat');
-      //  $empadd->password = $request->input('password'); We`ll Create Another Method
+     
         $empadd->idf_type = $request->input('idf_type');
         $empadd->idf_num = $request->input('idf_num');
         $empadd->more = $request->input('more');
-        
-        
-        
-        
+        $empadd->bankid = $request->input("bankid");
         $empadd->save();
-        return 'تم الاضافة' . $empadd->id;
+
+        $useradd = new User;
+        $useradd->name = $request->input('en_fullname');
+        $useradd->email = $request->input('email');
+        $useradd->role = 'Emp';
+        $useradd->password = bcrypt($request->input('password'));
+        $useradd->userid = $empadd->id;
+        $useradd->save();
+        return 'تم الاضافة' . $useradd->id;
     }
 
     /**
@@ -109,11 +115,20 @@ class EmpController extends Controller
         $empadd->idf_type = $request->input('idf_type');
         $empadd->idf_num = $request->input('idf_num');
         $empadd->more = $request->input('more');
-        
+        $empadd->bankid = $request->input("bankid");
+
         
         
         
         $empadd->save();
+
+        $useradd = User::find($id);
+        $useradd->name = $request->input('en_fullname');
+        $useradd->email = $request->input('email');
+        $useradd->password = bcrypt($request->input('password'));
+        $useradd->role = $request->input('Emp');
+      //  $useradd->userid = $empadd->id;
+
         return 'تم الاضافة' . $empadd->id;
     }
 
@@ -126,6 +141,7 @@ class EmpController extends Controller
     public function destroy($id)
     {
         $empa = Emp::find($id)->delete();
+        $usera = User::find($id)->delete();
         return 'done Deleted';
         
     }

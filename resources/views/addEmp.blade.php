@@ -180,7 +180,8 @@
 										<div class="form-group">
 											<label for="projectinput6">العيادة</label>
 											<select id="projectinput6" name="budget" class="form-control" ng-model = "clinic" >
-												<option value = "all" >بدون تحديد</option>
+												<option value  = "all"> جميع العيادات </option>
+												<option ng-repeat = "da in clns" value = "@{{da.id}}" >@{{da.cln_arname}}</option>
 											
 											</select>
 										</div>
@@ -205,7 +206,7 @@
 								<div class="col-md-6">
 										<div class="form-group">
 											<label for="projectinput6">نوع الهوية</label>
-											<select id="projectinput6" name="budget" class="form-control" ng-model = "idf_type">
+											<select id="ad" name="da" class="form-control" ng-model = "idf_type">
 												<option >بطاقة وطنية</option>
 												<option >...</option>
 											</select>
@@ -215,16 +216,24 @@
 									<div class="col-md-6">
 								<div class="form-group">
 									<label for="companyName">رقمها</label>
-									<input type="text" id="companyName" class="form-control" placeholder="0" name="company" ng-model = "idf_num">
+									<input type="text" id="ad" class="form-control" placeholder="0" name="company" ng-model = "idf_num">
 								</div>
 								</div>
 
-								
+								<div class = "col-md-12">
+										<div class="form-group">
+												<label for="companyName">الخزينة</label>
+												<select class="form-control" ng-model="bankid">
+													<option ng-repeat ="da in banks" value="@{{da.id}}">@{{da.bankname}}</option>
+												</select>
+											</div>
+								</div>
 
 								<div class="form-group">
 									<label for="projectinput8">ملاحضات</label>
-									<textarea id="projectinput8" rows="5" class="form-control" name="comment" placeholder="" ng-model = "more"></textarea>
+									<textarea id="da" rows="5" class="form-control" name="comment" placeholder="" ng-model = "more"></textarea>
 								</div>
+
 							</div>
 
 							<div class="form-actions">

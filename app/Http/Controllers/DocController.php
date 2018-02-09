@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\doctor;
+use App\User;
 class DocController extends Controller
 {
     /**
@@ -38,6 +39,14 @@ class DocController extends Controller
         return $docs;
     }
 
+    public function doctorbycln($clnid) {
+
+        $docs = doctor::where("doc_clinic","=",$clnid)->get();
+        return $docs;
+        
+
+    }
+
     public function store(Request $request)
     {
         $bradd = new doctor;
@@ -67,9 +76,16 @@ class DocController extends Controller
                         $request->file('file1')->move('images/doctor',$imgname);
                        
                 }
-
+                
                 $brimgsave->save();
-
+             
+                $useradd = new User;
+                $useradd->name = $request->input('doc_name');
+                $useradd->email = $request->input('doc_email');
+                $useradd->password = bcrypt($request->input('password'));
+                $useradd->role = 'doctor';
+                $useradd->userid = $bradd->id;
+                $useradd->save();
     }
 
     /**
@@ -133,6 +149,14 @@ class DocController extends Controller
                 }
                 $bradd->save();
 
+                $useradd = User::find($id);
+                $useradd->name = $request->input('doc_name');
+                $useradd->email = $request->input('doc_email');
+                $useradd->password = bcrypt($request->input('password'));
+                $useradd->role = 'doctor';
+              //  $useradd->userid = $bradd->id;
+                $useradd->save();
+
     }
 
     /**
@@ -143,10 +167,19 @@ class DocController extends Controller
      */
     public function destroy($id)
     {
-        $brn = Branch::find($id);
+        $brn = doctor::find($id);
         $fname = $brn->br_img;
-        File::delete('images/doctor/'.$fname . '-doc');
-        File::delete('images/doctor/'.$fname . '-mohlat');
+
+        if (file_exists('images/doctor/'.$fname . '-doc')) {
+            File::delete('images/doctor/'.$fname . '-doc');
+        }
+
+        if (file_exists('images/doctor/'.$fname . '-mohlat')) {
+            File::delete('images/doctor/'.$fname . '-mohlat');
+        }
+      
+       // File::delete('images/doctor/'.$fname . '-mohlat');
+        
         
         $brn->delete();
        

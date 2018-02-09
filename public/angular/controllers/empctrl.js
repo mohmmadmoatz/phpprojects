@@ -40,6 +40,16 @@ $http.get('api/emps')
     $scope.Emps= respone;
 })
 
+$http.get('api/cln')
+.success(function(respone){
+    $scope.clns= respone;
+})
+
+$http.get('api/bank')
+.success(function(respone){
+    $scope.banks= respone;
+})
+
 $scope.refresh = function() {
     $http.get('api/emps')
     .success(function(respone){
@@ -63,6 +73,7 @@ $scope.editEmp = function (id) {
         $scope.idf_num = data.idf_num
         $scope.more = data.more
         $scope.empid = id;
+        $scope.bankid = data.bankid
 
     })
 
@@ -90,7 +101,8 @@ mohlat : $scope.mohlat,
 idf_type : $scope.idf_type,
 idf_num : $scope.idf_num,
 more :$scope.more,
-
+bankid:$scope.bankid,
+password : $scope.password
 }).success(function(data, status, headers, config) {
 
     
@@ -107,7 +119,7 @@ more :$scope.more,
      });
 
      $timeout(function () {
-        location.reload();
+     //   location.reload();
     }, 1000);
 
 }).error(function (error) {
